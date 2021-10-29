@@ -1,0 +1,116 @@
+.cards-list {
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+  
+    margin: 30px auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 40px;
+  box-shadow: 5px 5px 30px 7px rgba(221, 216, 216, 0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+    color: black;
+  }
+  
+  /* .card .card_image {
+    width: inherit;
+    height: inherit;
+    border-radius: 40px;
+  } */
+  
+  /* .card .card_image img {
+    width: inherit;
+    height: inherit;
+    border-radius: 40px;
+    object-fit: cover;
+  } */
+  
+  .card .card_title {
+    text-align: center;
+    border-radius: 0px 0px 40px 40px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    /* margin-top: -80px; */
+    margin-top: 66px;
+    height: 40px;
+  }
+  
+  .card:active {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+      -5px -5px 30px 15px rgba(0,0,0,0.22);
+  }
+  
+  .title-white {
+    color: rgb(65, 1, 1);
+  }
+  
+  .title-black {
+    color: black;
+  }
+  .bgWhite{
+    background:white;
+    box-shadow:0px 3px 6px 0px #cacaca;
+  }
+  
+  .title{
+    font-weight:600;
+    margin-top:20px;
+    font-size:24px
+  }
+  
+  .customBtn{
+    border-radius:0px;
+    padding:10px;
+  }
+
+  .otp {
+    display:inline-block;
+    width:50px;
+    height:50px;
+    text-align:center;
+  }
+  
+  @media only screen and (max-width: 522px)   {
+    .card{
+      flex-shrink: 4;
+      width: 150px;
+      height: 150px;
+      font-size: 0.8rem;     
+    }
+    .card .card_title {
+      margin-top: 44px; 
+    }
+  }
+ 
+  
+  /*
+  .card {
+    margin: 30px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 40px;
+    background-image: url('https://i.redd.it/b3esnz5ra34y.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+  box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    transition: 0.4s;
+  }
+  */
+
+.deleteBtn{
+  z-index: 99;
+  position: absolute;
+  right: 0;
+  top: 11px;
+  left: 86px;
+}
