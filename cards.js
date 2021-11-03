@@ -349,16 +349,13 @@ function attachLongPressev() {
     commandArray.forEach((e, i) => {
         let el = document.getElementById('tile' + i);
         el.addEventListener('long-press', function (e) {
-            // console.log(e);
-            // console.log(e.parentNode);
-            // stop the event from bubbling up
-            e.preventDefault()
             e.path.forEach(cls => {
                 if (cls.className === 'tile card' && cls.className != 'deleteBtn') {
                     console.log(cls);
                     let btn = document.createElement("BUTTON");
-                    btn.className = "deleteBtn"   // Create a <button> element
+                    btn.className = "deleteBtn btn-secondary"   // Create a <button> element
                     btn.innerHTML = "Delete";
+                    btn.type ='button'
                     btn.setAttribute('data-filter', cls.getAttribute('data.cmd'))                 // Insert text
                     cls.appendChild(btn);               // Append <button> to <body>
                     // let btnHtml= `<button type="button" class="btn btn-danger btn-lg deleteBtn"   data-filter=${cls.getAttribute('data.cmd')} >delete</button>`
@@ -396,6 +393,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     console.log('doc loaded');
     document.getElementById('goBack').style.display = 'none';
     document.querySelector('.cmd-container').style.display = "none";
+    document.querySelector('#cmd-search').style.display = "none";
+
     genererateCards()
     generateOptions()
 })
@@ -414,7 +413,7 @@ function changes(ev) {
     }
 
 }
-document.getElementById("browser").addEventListener("input", changes);
+document.getElementById("cmd-input").addEventListener("input", changes);
 function generateOptions() {
     let str = '';
     additionalCommands.forEach(e => {
@@ -432,4 +431,10 @@ window.oncontextmenu = function (event) {
 function deleteCard(val) {
     console.log({ val });
 }
+document.querySelector('.remove-btn').addEventListener('click',e=>{
+    
+    let inputEle =  document.getElementById('cmd-input');
+    inputEle.value='';
+    inputEle.focus()
+})
 

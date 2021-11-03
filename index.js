@@ -14,25 +14,37 @@ app.get('/', (req, res) => {
 var clients = io.sockets;
 
 io.on('connection', (socket) => {
-  console.log(socket.id);
-
-  socket.on('chat message', (msg, room) => {
-    let chatId=''
-    clients.sockets.forEach(function (data, counter) {
-      if( data.id.substring(0,4) === room.trim()){
-        chatId =data.id;
-      }
-      // var isConnected = data.connected//true,false;
-     
-    });
-    if (chatId) {
-      // socket.broadcast.emit('chat message', msg)
-      socket.to(chatId).emit('chat message', msg)
-    } else {
-      console.log('room not found');
-    }
-    // io.emit('chat message', msg);
+  socket.on('create', function (room) {
+    console.log({ room });
+    socket.join(room);
   });
+  socket.on('chat message', (msg, room) => {
+    console.log(room);
+    socket.to(room).emit('chat message', msg)
+  })
+  socket.on('next',(msg)=>{
+    socket.leave(msg)
+    console.log({msg});
+  })
+  // socket.on('chat message', (msg, room) => {
+  //   let chatId = ''
+  //   console.log({ userId });
+  //   clients.sockets.forEach(function (data, counter) {
+  //     if (data.id.substring(0, 4) === room.trim()) {
+  //       chatId = data.id;
+  //     }
+  //     // var isConnected = data.connected//true,false;
+
+  //   });
+  //   // console.log(chatId);
+  //   if (chatId) {
+  //     // socket.broadcast.emit('chat message', msg)
+  //     socket.to(chatId).emit('chat message', msg)
+  //   } else {
+  //     console.log('room not found');
+  //   }
+  //   // io.emit('chat message', msg);
+  // });
 });
 
 http.listen(port, () => {

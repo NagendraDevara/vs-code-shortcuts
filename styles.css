@@ -77,6 +77,11 @@
     height:50px;
     text-align:center;
   }
+  .tile{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;
+    user-select: none; 
+  }
   
   @media only screen and (max-width: 522px)   {
     .card{
@@ -113,4 +118,10 @@
   right: 0;
   top: 11px;
   left: 86px;
+}
+.remove-btn{
+  position: absolute;
+  top: 119px;
+  right: 23px;
+
 }

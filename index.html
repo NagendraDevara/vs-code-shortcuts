@@ -16,13 +16,25 @@
   <div>
     <button id="goBack" class='btn btn-primary btn-block mt-4 mb-4 customBtn'>Go Back</button>
   </div>
-  <form action="/action_page.php" method="get">
-    <label for="browser">Choose your shortcut tile from the list:</label>
-    <input list="browsers" class="form-control" name="browser" id="browser">
-    <datalist id="browsers" onclick="changes($event)">
+  <div id="cmd-search">
 
-    </datalist>
-  </form>
+    <form action="/action_page.php" method="get">
+      <label for="browser">Choose your shortcut tile from the list:</label>
+      <input list="browsers" class="form-control" name="browsers" id="cmd-input">
+      <button type="button" class="btn btn-link remove-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z">
+          </path>
+        </svg>
+      </button>
+      <datalist id="browsers" onclick="changes($event)">
+
+      </datalist>
+    </form>
+  </div>
+
   <div class="cmd-container">
     <div class="cards-list">
 
@@ -40,10 +52,9 @@
               </div>
 
               <form action="" class="mt-5" id="idForm">
-                <input class="otp" type="text" onkeyup='tabChange(1)' maxlength=1 required>
-                <input class="otp" type="text" onkeyup='tabChange(2)' maxlength=1 required>
-                <input class="otp" type="text" onkeyup='tabChange(3)' maxlength=1 required>
-                <input class="otp" type="text" onkeyup='tabChange(4)' maxlength=1 required>
+                <input type="text" placeholder="Kindly enter the 4 digit code" class="form-control" maxlength=4
+                  required>
+
               </form>
               <hr class="mt-4">
               <button id="verifyBtn" class='btn btn-primary btn-block mt-4 mb-4 customBtn'>Proceed</button>
@@ -61,7 +72,7 @@
   <script defer src="./cards.js"></script>
   <script defer src="./verifyId.js"></script>
 
-  
+
 </body>
 
 </html>

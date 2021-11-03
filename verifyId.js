@@ -20,6 +20,8 @@ let tabChange = function (val) {
       document.getElementById('goBack').style.display = 'block'
       // console.log(chatIdVal);
       document.querySelector('.cmd-container').style.display = "block";
+      document.querySelector('#cmd-search').style.display = "block";
+
     } else {
       document.forms['idForm'].reportValidity();
 
@@ -30,5 +32,6 @@ let tabChange = function (val) {
     document.querySelector('.container').style.display = 'block'
     document.getElementById('goBack').style.display = 'none';
     document.querySelector('.cmd-container').style.display = "none";
+    document.querySelector('#cmd-search').style.display = "none";
 
   });
