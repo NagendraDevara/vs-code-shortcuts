@@ -355,7 +355,7 @@ function attachLongPressev() {
                     let btn = document.createElement("BUTTON");
                     btn.className = "deleteBtn btn-secondary"   // Create a <button> element
                     btn.innerHTML = "Delete";
-                    btn.type ='button'
+                    btn.type = 'button'
                     btn.setAttribute('data-filter', cls.getAttribute('data.cmd'))                 // Insert text
                     cls.appendChild(btn);               // Append <button> to <body>
                     // let btnHtml= `<button type="button" class="btn btn-danger btn-lg deleteBtn"   data-filter=${cls.getAttribute('data.cmd')} >delete</button>`
@@ -431,10 +431,56 @@ window.oncontextmenu = function (event) {
 function deleteCard(val) {
     console.log({ val });
 }
-document.querySelector('.remove-btn').addEventListener('click',e=>{
-    
-    let inputEle =  document.getElementById('cmd-input');
-    inputEle.value='';
+document.querySelector('.remove-btn').addEventListener('click', e => {
+
+    let inputEle = document.getElementById('cmd-input');
+    inputEle.value = '';
     inputEle.focus()
 })
 
+if ('WakeLock' in window && 'request' in window.WakeLock) {
+    console.log('triggered code')
+    let wakeLock = null;
+
+    const requestWakeLock = () => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        window.WakeLock.request('screen', { signal })
+            .catch((e) => {
+                if (e.name === 'AbortError') {
+                    //   statusDiv.textContent = 'Wake Lock was aborted';
+                    console.log('Wake Lock was aborted');
+                } else {
+                    //   statusDiv.textContent = `${e.name}, ${e.message}`;
+                    console.error(`${e.name}, ${e.message}`);
+                }
+            });
+        //   statusDiv.textContent = 'Wake Lock is active';
+        console.log('Wake Lock is active');
+        return controller;
+    };
+    requestWakeLock()
+} else if ('wakeLock' in navigator && 'request' in navigator.wakeLock) {
+    let wakeLock = null;
+
+    const requestWakeLock = async () => {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            wakeLock.addEventListener('release', (e) => {
+                console.log(e);
+                console.log('Wake Lock was released');
+            });
+            console.log('Wake Lock is active');
+        } catch (e) {
+            console.error(`${e.name}, ${e.message}`);
+        }
+    };
+
+    requestWakeLock()
+
+
+
+
+} else {
+    console.error('Wake Lock API not supported.');
+}
